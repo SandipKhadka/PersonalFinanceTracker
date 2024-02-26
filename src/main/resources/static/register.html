@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        form {
+            border: 3px solid #f1f1f1;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <form action="register" method="post">
+        <label for="first-name">First Name:</label>
+        <input type="text" id="first-name" name="firstName" placeholder="Enter your first name" required>
+
+        <label for="last-name">Last Name:</label>
+        <input type="text" id="last-name" name="lastName" placeholder="Enter your last name" required>
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="userName" placeholder="Choose a username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter a password" required>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p>Already have an account? <a href="index.html">Login</a></p>
+</body>
+</html>

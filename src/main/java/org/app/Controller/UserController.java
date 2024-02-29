@@ -8,15 +8,34 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 
 public class UserController {
+
     @Autowired
     UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @GetMapping
+    public String show() {
+        return "home_page";
+    }
+
+    @GetMapping("/register")
+
+    public String showRegisterPage() {
+        return "register";
+    }
+
+    @GetMapping("/login")
+    public String showLoginPage() {
+        return "login";
     }
 
     @PostMapping("/register")
@@ -32,12 +51,13 @@ public class UserController {
 
     @PostMapping("/login")
 
-    public String loginUser(@ModelAttribute Login iser) {
+    public String loginUser(Login user) {
         try {
-            userService.loginService(iser);
+            userService.loginService(user);
             return "redirect:welcome.html";
         } catch (Exception e) {
             return "redirect:/error.html";
         }
     }
+
 }

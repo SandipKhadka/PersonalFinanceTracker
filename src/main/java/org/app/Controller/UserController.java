@@ -41,10 +41,10 @@ public class UserController {
     public String registerUser(@ModelAttribute Register user, ModelMap model) {
         try {
             userService.registerService(user);
-            return "redirect:/welcome.html";
+            return "welcome";
 
         } catch (Exception e) {
-            return "redirect:/error.html";
+            return "error";
         }
     }
 
@@ -52,10 +52,14 @@ public class UserController {
 
     public String loginUser(Login user) {
         try {
-            userService.loginService(user);
-            return "redirect:welcome.html";
+            if (userService.loginService(user)) {
+
+                return "welcome";
+            } else {
+                return "error";
+            }
         } catch (Exception e) {
-            return "redirect:/error.html";
+            return "eooror";
         }
     }
 

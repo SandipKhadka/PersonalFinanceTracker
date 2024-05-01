@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,8 +41,11 @@
         }
     </style>
 </head>
+
 <body>
-    <form action="register" method="post">
+    <form th:action="@{/register}" method="post">
+
+        <p th:text="${loginError}"></p>
         <label for="first-name">First Name:</label>
         <input type="text" id="first-name" name="firstName" placeholder="Enter your first name" required>
 
@@ -59,4 +63,5 @@
 
     <p>Already have an account? <a href="index.html">Login</a></p>
 </body>
+
 </html>

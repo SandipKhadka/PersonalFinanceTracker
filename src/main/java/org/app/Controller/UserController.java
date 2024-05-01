@@ -5,7 +5,7 @@ import org.app.model.Register;
 import org.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,8 +38,12 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute Register user, ModelMap model) {
+    public String registerUser(@ModelAttribute("register") Register user, Model model) {
         try {
+            if(user.getUserName().equals("sandip")) {
+                model.addAttribute("loginError", "sandip");
+                return "register";
+            }
             userService.registerService(user);
             return "welcome";
 

@@ -13,9 +13,9 @@ public class AppConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/sandip");
-        dataSource.setUsername("root");
-        dataSource.setPassword("");
+        dataSource.setUrl("jdbc:mysql://{your-server-host}:{host-port-number}/{database-name}"); //remove curly braces to enter the details
+        dataSource.setUsername("{username-for-the-database}");
+        dataSource.setPassword("{database-password}");
         return dataSource;
     }
 

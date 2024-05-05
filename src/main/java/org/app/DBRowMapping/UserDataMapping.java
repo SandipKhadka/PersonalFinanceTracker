@@ -11,7 +11,7 @@ public class UserDataMapping implements RowMapper<DataModel> {
 
     @Override
     @Nullable
-    public DataModel mapRow(ResultSet arg0, int arg1) throws SQLException {
+    public DataModel mapRow(@SuppressWarnings("null") ResultSet arg0, int arg1) throws SQLException {
         DataModel dataModel = new DataModel();
         dataModel.setId(arg0.getInt("id"));
         dataModel.setUid(arg0.getString("uid"));

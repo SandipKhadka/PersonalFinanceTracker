@@ -31,4 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
-\src\main\java\org\app\config\AppConfig.java
+
+
+src/main/java/org/app/config/AppConfig.java

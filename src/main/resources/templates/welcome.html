@@ -6,6 +6,17 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>This is teh welcome page</h1>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Uid</th>
+            <th>data</th>
+        </tr>
+        <tr th:each="datas : ${user}">
+            <td th:text="${datas.id}">Id</td>
+            <td th:text="${datas.uid}">Uid</td>
+            <td th:text="${datas.data}">data</td>
+        </tr>
+    </table>
 </body>
 </html>

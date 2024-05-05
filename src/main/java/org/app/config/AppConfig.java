@@ -13,9 +13,9 @@ public class AppConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://{your-server-host}:{host-port-number}/{database-name}"); //remove curly braces to enter the details
-        dataSource.setUsername("{username-for-the-database}");
-        dataSource.setPassword("{database-password}");
+        dataSource.setUrl("jdbc:mysql://mysql-1811694f-kcc-f35b.a.aivencloud.com:26743/FinanceTracker"); 
+        dataSource.setUsername("avnadmin");
+        dataSource.setPassword("AVNS_trZ5xJAGf3zShPRCasI");
         return dataSource;
     }
 

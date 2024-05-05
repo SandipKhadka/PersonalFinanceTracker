@@ -19,6 +19,13 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-jdbc</artifactId>
+            <version>3.2.2</version>
+        </dependency>
+
+
+        <dependency>
             <groupId>net.optionfactory.spring</groupId>
             <artifactId>thymeleaf</artifactId>
             <version>9.5</version>

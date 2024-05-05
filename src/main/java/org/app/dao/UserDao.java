@@ -8,4 +8,9 @@ public interface UserDao {
     boolean registerUser(Register user);
 
     boolean loginUser(Login user);
+
+    boolean isUserNameExistedInDatabase(Register user);
+
+    boolean isPasswordCorrect(Login user);
+    
 }

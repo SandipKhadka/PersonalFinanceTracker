@@ -1,7 +1,7 @@
 package org.app.model;
 
 public class Login {
-    String userName,password;
+    String userName, password;
 
     public String getUserName() {
         return userName;
@@ -18,5 +18,9 @@ public class Login {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
+    public long hashedPassword() {
+        return password.hashCode();
+    }
+
 }

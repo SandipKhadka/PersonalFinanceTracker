@@ -19,6 +19,7 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -39,15 +40,17 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute("register") Register user, Model model) {
+    public String registerUser(@ModelAttribute("register") Register user, Model model, HttpSession session) {
+        String userName = user.getUserName();
         try {
-            if (!userService.registerService(user)) {
-                model.addAttribute("loginError", "the user name is already existed");
+            if (!userService.isUserNameAvailable(userName)) {
+                model.addAttribute("userNameError", "The username is already taken please try another");
                 return "register";
+            } else {
+                userService.registerService(user);
+                session.setAttribute("user", userName);
+                return "redirect:/welcome";
             }
-            userService.registerService(user);
-            return "welcome";
-
         } catch (Exception e) {
             return "error";
         }
@@ -55,22 +58,23 @@ public class UserController {
 
     @PostMapping("/login")
 
-    public String loginUser(Login user,Model model,HttpSession session,RedirectAttributes attributes) {
+    public String loginUser(Login user, Model model, HttpSession session, RedirectAttributes attributes) {
+        String userName = user.getUserName();
+        long password = user.hashedPassword();
         try {
-            if (userService.loginService(user)) {
-                String userName = user.getUserName();
-                session.setAttribute("user", userName);
-                // ModelAndView modelAndView = new ModelAndView();
-                // List<DataModel> dataModels = dataService.getDataService(session);
-                // modelAndView.setViewName("user");
-                // modelAndView.addObject("dataModels",dataModels);
-                model.addAttribute("user", userService.getData());
-                return "redirect:/welcome";
-            } else {
-                return "error";
+            if(userService.isUserNameAvailable(userName)) { //isUserNameAvailable method returns true when username is not present in database otherwise false
+                model.addAttribute("userNameError", "The username is not available please check properly");
+                return "login";
             }
+            if(!userService.isPasswordCorrect(userName,password)) {
+                model.addAttribute("passwordError", "Incorrect password");
+                return "login";
+            }
+            userService.loginService(user);
+            session.setAttribute("user", userName);
+            return "redirect:/welcome";
         } catch (Exception e) {
-            return "eooror";
+            return "error";
         }
     }
 

@@ -19,7 +19,7 @@ public class DataDaoImpl implements DataDao {
     }
 
     public List<DataModel> getUserData(String uid) {
-        sql = "SELECT * FROM testing";
+        sql = "SELECT * FROM testing WHERE uid='"+uid+"'";
         List<DataModel> dataModels =jdbcTemplate.query(sql, new UserDataMapping());
         return dataModels;
     }

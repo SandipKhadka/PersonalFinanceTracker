@@ -19,11 +19,22 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <version>3.2.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>6.1.6</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-jdbc</artifactId>
             <version>3.2.2</version>
         </dependency>
-
 
         <dependency>
             <groupId>net.optionfactory.spring</groupId>
@@ -31,20 +42,17 @@
             <version>9.5</version>
         </dependency>
 
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>6.1.4</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -62,9 +70,6 @@
             <scope>test</scope>
         </dependency>
     
-     
-    
-     
     </dependencies>
 
     <build>

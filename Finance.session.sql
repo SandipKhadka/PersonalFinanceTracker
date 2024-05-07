@@ -18,9 +18,26 @@
 --     )
 
 insert into testing(id,uid,data)
-    values(1,'sandip',12),
-    (2,'sandip',13)
+    values(3,'ram',12),
+    (4,'ram',13)
+
+-- CREATE TABLE UserDetails (
+--     FirstName VARCHAR(99),
+--     LastName VARCHAR(99),
+--     UserName VARCHAR(99) PRIMARY KEY,
+--     Password int
+-- )
+-- DROP TABLE UserDetails
+
+
+-- CREATE TABLE testing (
+--     id INT PRIMARY KEY,
+--     uid VARCHAR(99),
+--     data int,
+--     FOREIGN KEY(uid) REFERENCES UserDetails(UserName)
+-- )
 
 
 
 
+-- DELETE FROM SPRING_SESSION_ATTRIBUTES

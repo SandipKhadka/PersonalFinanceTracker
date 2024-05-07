@@ -9,8 +9,8 @@ public interface UserDao {
 
     boolean loginUser(Login user);
 
-    boolean isUserNameExistedInDatabase(Register user);
+    boolean isUserNameAvailable(String userName);
 
-    boolean isPasswordCorrect(Login user);
+    boolean isPasswordCorrect(String userName,long password);
     
 }

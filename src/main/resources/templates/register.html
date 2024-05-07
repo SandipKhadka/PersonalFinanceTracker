@@ -45,7 +45,6 @@
 <body>
     <form th:action="@{/register}" method="post">
 
-        <p th:text="${loginError}"></p>
         <label for="first-name">First Name:</label>
         <input type="text" id="first-name" name="firstName" placeholder="Enter your first name" required>
 
@@ -54,6 +53,9 @@
 
         <label for="username">Username:</label>
         <input type="text" id="username" name="userName" placeholder="Choose a username" required>
+        <div>
+            <span th:text="${userNameError}"></span>
+        </div>
 
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" placeholder="Enter a password" required>

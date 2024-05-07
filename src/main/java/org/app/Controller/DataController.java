@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class DataController {
     @Autowired
@@ -21,6 +22,7 @@ public class DataController {
     public DataController(DataService dataService) {
         this.dataService = dataService;
     }
+
     @RequestMapping("/welcome")
     public ModelAndView shoData() {
         ModelAndView modelAndView = new ModelAndView();

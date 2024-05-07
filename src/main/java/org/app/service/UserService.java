@@ -19,15 +19,10 @@ public class UserService {
     }
 
     public boolean registerService(Register user) {
-        if (!userDao.isUserNameExistedInDatabase(user)) {
-            if (userDao.registerUser(user)) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
+        if (userDao.registerUser(user)) {
+            return true;
         }
+        return false;
     }
 
     public boolean loginService(Login user) {
@@ -38,8 +33,17 @@ public class UserService {
         }
     }
 
-    public String getData() {
-        String id = (String) session.getAttribute("user");
-        return id;
+    public boolean isUserNameAvailable(String usserName) {
+        if (userDao.isUserNameAvailable(usserName)) {
+            return true;
+        }
+        return false;
     }
+    public boolean isPasswordCorrect(String userName,long password) {
+        if(userDao.isPasswordCorrect(userName,password)) {
+            return true;
+        }
+        return false;
+    }
+
 }

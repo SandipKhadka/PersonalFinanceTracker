@@ -1,10 +1,9 @@
 
 package org.app.model;
 
-
 public class Register {
 
-    String firstName,lastName,userName,password;
+    String firstName, lastName, userName, password;
 
     public String getFirstName() {
         return firstName;
@@ -38,5 +37,8 @@ public class Register {
         return password;
     }
 
-    
+    public long hashedPassword() {
+        return password.hashCode();
+    }
+
 }

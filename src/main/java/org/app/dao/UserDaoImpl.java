@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserDaoImpl implements UserDao {
-    String firstName, lastName, userName, password, sql;
+    String firstName, lastName, userName, sql;
+    long hashedPassword;
     @Autowired
     JdbcTemplate jdbcTemplate;
 
@@ -21,9 +22,9 @@ public class UserDaoImpl implements UserDao {
         firstName = user.getFirstName();
         lastName = user.getLastName();
         userName = user.getUserName();
-        password = user.getPassword();
+        hashedPassword = user.hashedPassword();
         String sql = "INSERT INTO UserDetails (FirstName,LastName,UserName,Password) values(?,?,?,?)";
-        int result = jdbcTemplate.update(sql, firstName, lastName, userName, password);
+        int result = jdbcTemplate.update(sql, firstName, lastName, userName, hashedPassword);
         if (result == 1) {
             return true;
         } else {
@@ -34,23 +35,19 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean loginUser(Login user) {
         userName = user.getUserName();
-        password = user.getPassword();
-        sql = "SELECT COUNT(*) FROM UserDetails WHERE UserName=? AND Password=?";
-        int count = jdbcTemplate.queryForObject(sql, Integer.class, userName, password);
-        if (count == 1) {
+        hashedPassword = user.hashedPassword();
+        if (isPasswordCorrect(userName,hashedPassword)) {
             return true;
-        } else {
-            return false;
         }
+        return false;
 
     }
 
     @Override
-    public boolean isUserNameExistedInDatabase(Register user) {
-        userName = user.getUserName();
-        sql = "SELECT COUNT(userName) FROM UserDetails WHERE UserName =?";
+    public boolean isUserNameAvailable(String userName) {
+        sql = "SELECT COUNT(UserName) FROM UserDetails WHERE UserName =?";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, userName);
-        if (count == 1) {
+        if (count != 1) {
             return true;
         } else {
             return false;
@@ -59,8 +56,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean isPasswordCorrect(Login user) {
-        throw new UnsupportedOperationException("Unimplemented method 'isPasswordCorrect'");
+    public boolean isPasswordCorrect(String userName,long password) {
+        sql = "SELECT COUNT(*) FROM UserDetails WHERE UserName =? AND Password=?";
+        int count = jdbcTemplate.queryForObject(sql, Integer.class, userName,password);
+        if (count == 1) {
+            return true;
+        }
+        return false;
     }
 
 }

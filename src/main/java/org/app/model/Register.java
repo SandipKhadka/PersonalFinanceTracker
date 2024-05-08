@@ -3,7 +3,8 @@ package org.app.model;
 
 public class Register {
 
-    String firstName, lastName, userName, password;
+    String firstName, lastName, userName, password; // the name of variable should be sams as name attribute in html
+                                                    // file
 
     public String getFirstName() {
         return firstName;

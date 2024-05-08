@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>Catagory</th>
+            <th>Expanses</th>
+            <th>Income</th>
+        </tr>
+        <tr th:each="transaction : ${user}">
+            <td th:text="${transaction.Catagory}">Catagory</td>
+            <td th:text="${transaction.expanses}">Expanses</td>
+            <td th:text="${transaction.income}">Income</td>
+        </tr>
+    </table>
+</body>
+
+</html>

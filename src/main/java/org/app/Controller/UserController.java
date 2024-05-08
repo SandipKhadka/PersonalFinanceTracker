@@ -49,7 +49,7 @@ public class UserController {
             } else {
                 userService.registerService(user);
                 session.setAttribute("user", userName);
-                return "redirect:/welcome";
+                return "redirect:/userdashboard";
             }
         } catch (Exception e) {
             return "error";
@@ -62,17 +62,18 @@ public class UserController {
         String userName = user.getUserName();
         long password = user.hashedPassword();
         try {
-            if(userService.isUserNameAvailable(userName)) { //isUserNameAvailable method returns true when username is not present in database otherwise false
+            if (userService.isUserNameAvailable(userName)) { // isUserNameAvailable method returns true when username is
+                                                             // not present in database otherwise false
                 model.addAttribute("userNameError", "The username is not available please check properly");
                 return "login";
             }
-            if(!userService.isPasswordCorrect(userName,password)) {
+            if (!userService.isPasswordCorrect(userName, password)) {
                 model.addAttribute("passwordError", "Incorrect password");
                 return "login";
             }
             userService.loginService(user);
             session.setAttribute("user", userName);
-            return "redirect:/welcome";
+            return "redirect:/userdashboard";
         } catch (Exception e) {
             return "error";
         }

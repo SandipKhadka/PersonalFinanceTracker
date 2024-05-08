@@ -1,43 +1,65 @@
-
--- DELETE FROM SPRING_SESSION_ATTRIBUTES;
-
-
+-- -- DELETE FROM SPRING_SESSION_ATTRIBUTES;
 -- CREATE TABLE SPRING_SESSION_ATTRIBUTES (
 --     SESSION_PRIMARY_ID CHAR(36) NOT NULL,
 --     ATTRIBUTE_NAME VARCHAR(200) NOT NULL,
 --     ATTRIBUTE_BYTES BLOB NOT NULL,
 --     CONSTRAINT SPRING_SESSION_ATTRIBUTES_PK PRIMARY KEY (SESSION_PRIMARY_ID, ATTRIBUTE_NAME),
 --     CONSTRAINT SPRING_SESSION_ATTRIBUTES_FK FOREIGN KEY (SESSION_PRIMARY_ID) REFERENCES SPRING_SESSION(PRIMARY_ID) ON DELETE CASCADE
--- ) ENGINE=InnoDB ROW_FORMAT=DYNAMIC;
-
+-- ) ENGINE = InnoDB ROW_FORMAT = DYNAMIC;
 -- CREATE TABLE testing (
 --     id int PRIMARY KEY,
 --     uid varchar(88),
 --     data int,
 --     FOREIGN KEY (uid) REFERENCES UserDetails(UserName)
---     )
-
-insert into testing(id,uid,data)
-    values(3,'ram',12),
-    (4,'ram',13)
-
--- CREATE TABLE UserDetails (
+-- --     )
+-- insert into testing(id, uid, data)
+-- values(5, 'sita', 12),
+--     (6, 'sita', 13) -- CREATE TABLE UserDetails (
 --     FirstName VARCHAR(99),
 --     LastName VARCHAR(99),
 --     UserName VARCHAR(99) PRIMARY KEY,
 --     Password int
 -- )
 -- DROP TABLE UserDetails
-
-
 -- CREATE TABLE testing (
 --     id INT PRIMARY KEY,
 --     uid VARCHAR(99),
 --     data int,
 --     FOREIGN KEY(uid) REFERENCES UserDetails(UserName)
 -- )
-
-
-
-
 -- DELETE FROM SPRING_SESSION_ATTRIBUTES
+-- CREATE TABLE SPRING_SESSION (
+-- 	PRIMARY_ID CHAR(36) NOT NULL,
+-- 	SESSION_ID CHAR(36) NOT NULL,
+-- 	CREATION_TIME BIGINT NOT NULL,
+-- 	LAST_ACCESS_TIME BIGINT NOT NULL,
+-- 	MAX_INACTIVE_INTERVAL INT NOT NULL,
+-- 	EXPIRY_TIME BIGINT NOT NULL,
+-- 	PRINCIPAL_NAME VARCHAR(100),
+-- 	CONSTRAINT SPRING_SESSION_PK PRIMARY KEY (PRIMARY_ID)
+-- );
+-- CREATE UNIQUE INDEX SPRING_SESSION_IX1 ON SPRING_SESSION (SESSION_ID);
+-- CREATE INDEX SPRING_SESSION_IX2 ON SPRING_SESSION (EXPIRY_TIME);
+-- CREATE INDEX SPRING_SESSION_IX3 ON SPRING_SESSION (PRINCIPAL_NAME);
+-- CREATE TABLE UserTransaction(
+--     transaction_id INT PRIMARY KEY,
+--     user_name VARCHAR(99),
+--     catagory INT,
+--     expanses_amount INT NOT NULL,
+--     income INT,
+--     FOREIGN KEY (user_name) REFERENCES UserDetails(UserName),
+--     FOREIGN KEY (catagory) REFERENCES Catagory(Catagory_id)
+-- ) 
+-- CREATE TABLE Catagory (
+--     catagory_id INT PRIMARY KEY,
+--     catagory_name varchar(99) NOT NULL
+-- )
+-- ALTER TABLE UserTransaction
+-- ADD income int
+-- SELECT expanses_amount,
+--     income,
+--     Catagory_name
+-- FROM UserTransaction
+--     INNER JOIN Catagory ON UserTransaction.catagory = Catagory.Catagory_id
+-- WHERE UserTransaction.user_name = 'sandip';
+-- DROP TABLE Catagory

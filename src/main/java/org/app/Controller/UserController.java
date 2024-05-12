@@ -3,13 +3,10 @@ package org.app.Controller;
 import org.app.model.Login;
 import org.app.model.Register;
 import org.app.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class UserController {
 
-    @Autowired
     UserService userService;
 
     public UserController(UserService userService) {
@@ -49,7 +45,7 @@ public class UserController {
             } else {
                 userService.registerService(user);
                 session.setAttribute("user", userName);
-                return "redirect:/userdashboard";
+                return "expenses_form";
             }
         } catch (Exception e) {
             return "error";
@@ -58,7 +54,7 @@ public class UserController {
 
     @PostMapping("/login")
 
-    public String loginUser(Login user, Model model, HttpSession session, RedirectAttributes attributes) {
+    public String loginUser(Login user, Model model, HttpSession session) {
         String userName = user.getUserName();
         long password = user.hashedPassword();
         try {
@@ -73,10 +69,9 @@ public class UserController {
             }
             userService.loginService(user);
             session.setAttribute("user", userName);
-            return "redirect:/userdashboard";
+            return "redirect:/dashboard";
         } catch (Exception e) {
             return "error";
         }
     }
-
 }

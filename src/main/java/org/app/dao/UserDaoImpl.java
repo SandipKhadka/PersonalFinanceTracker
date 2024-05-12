@@ -23,46 +23,31 @@ public class UserDaoImpl implements UserDao {
         lastName = user.getLastName();
         userName = user.getUserName();
         hashedPassword = user.hashedPassword();
-        String sql = "INSERT INTO UserDetails (FirstName,LastName,UserName,Password) values(?,?,?,?)";
+        sql = "INSERT INTO user_details(first_name,last_name,user_name,password) VALUES(?,?,?,?)";
         int result = jdbcTemplate.update(sql, firstName, lastName, userName, hashedPassword);
-        if (result == 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return result == 1;
     }
 
     @Override
     public boolean loginUser(Login user) {
         userName = user.getUserName();
         hashedPassword = user.hashedPassword();
-        if (isPasswordCorrect(userName,hashedPassword)) {
-            return true;
-        }
-        return false;
+        return isPasswordCorrect(userName, hashedPassword);
 
     }
 
     @Override
     public boolean isUserNameAvailable(String userName) {
-        sql = "SELECT COUNT(UserName) FROM UserDetails WHERE UserName =?";
+        sql = "SELECT COUNT(user_id) FROM user_details WHERE user_name =?";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, userName);
-        if (count != 1) {
-            return true;
-        } else {
-            return false;
-        }
-
+        return count != 1;
     }
 
     @Override
     public boolean isPasswordCorrect(String userName,long password) {
-        sql = "SELECT COUNT(*) FROM UserDetails WHERE UserName =? AND Password=?";
+        sql = "SELECT COUNT(user_id) FROM user_details WHERE user_name =? AND password=?";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, userName,password);
-        if (count == 1) {
-            return true;
-        }
-        return false;
+        return count == 1;
     }
 
 }

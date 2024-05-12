@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <form th:action="@{/expenses}" method="post">
+        <input name="amount" placeholder="Enter the expenses amount">
+        <select name="categoryId">
+            <option selected disabled value="">Select category</option>
+            <option th:each="category : ${categoryNames}" th:value="${category.categoryId}">
+                <span th:text="${category.categoryName}"></span>
+            </option>
+        </select>
+        <input name="remarks" placeholder="Enter expenses remarks">
+        <input type="submit" name="submit">
+    </form>
+
+
+</body>
+
+</html>

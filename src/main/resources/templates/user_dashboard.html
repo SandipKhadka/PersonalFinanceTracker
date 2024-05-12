@@ -8,18 +8,26 @@
 </head>
 
 <body>
-    <table>
-        <tr>
-            <th>Catagory</th>
-            <th>Expanses</th>
-            <th>Income</th>
-        </tr>
-        <tr th:each="transaction : ${user}">
-            <td th:text="${transaction.Catagory}">Catagory</td>
-            <td th:text="${transaction.expanses}">Expanses</td>
-            <td th:text="${transaction.income}">Income</td>
-        </tr>
-    </table>
+
+    <head>
+        <h1>User Dashboard</h1>
+    </head>
+    <nav>
+        <ul>
+            <li>Catagory</li>
+            <li>Profile</li>
+        </ul>
+    </nav>
+    <main>
+        <div>
+            <a th:href="@{/expenses}">
+                <button>Add Income</button>
+            </a>
+            <a th:href="@{/income}">
+                <button>Add Expenses</button>
+            </a>
+        </div>
+    </main>
 </body>
 
 </html>

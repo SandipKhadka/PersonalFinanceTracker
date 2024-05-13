@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class ExpensesCategoryMapping implements RowMapper<ExpensesCategory> {
     @Override
     @Nullable
-    public ExpensesCategory mapRow(ResultSet rs, int rowNum) throws SQLException {
+    public ExpensesCategory mapRow(@SuppressWarnings("null") ResultSet rs, int rowNum) throws SQLException {
         ExpensesCategory expensesCategory = new ExpensesCategory();
         expensesCategory.setCategoryId(rs.getInt("category_id"));
         expensesCategory.setCategoryName(rs.getString("category_name"));

@@ -33,10 +33,17 @@ public class IncomeDaoImpl implements IncomeDao {
     }
 
     @Override
-    public List<IncomeCategory> getAllCategoriea() {
+    public List<IncomeCategory> getAllCategories() {
         sql = "SELECT * FROM income_category";
         List<IncomeCategory> categories = jdbcTemplate.query(sql, new IncomeCategoryMapping());
         return categories;
+    }
+
+    @Override
+    public int getIncomeAmount(String userName) {
+        String sql = "SELECT SUM(income.income_amount ) FROM income INNER JOIN user_details ON income.user_id = user_details.user_id WHERE user_details.user_name =?";
+        int income = jdbcTemplate.queryForObject(sql, Integer.class, userName);
+        return income;
     }
 
 }

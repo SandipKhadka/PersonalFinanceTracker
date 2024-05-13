@@ -22,6 +22,10 @@ public class IncomeService {
         incomeDao.addIncome(income,username);
     }
     public List<IncomeCategory> getAllCategories() {
-        return incomeDao.getAllCategoriea();
+        return incomeDao.getAllCategories();
+    }
+    public int getIncomeAmount() {
+        String userName = (String) session.getAttribute("user");
+        return incomeDao.getIncomeAmount(userName);
     }
 }

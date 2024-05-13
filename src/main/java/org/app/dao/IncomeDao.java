@@ -7,5 +7,9 @@ import java.util.List;
 
 public interface IncomeDao {
     void addIncome(Income income, String userName);
-    List<IncomeCategory> getAllCategoriea();
+
+    List<IncomeCategory> getAllCategories();
+
+    int getIncomeAmount(String userName);
+
 }

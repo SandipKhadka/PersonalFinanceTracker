@@ -1,8 +1,9 @@
 package org.app.Controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.app.model.Income;
 import org.app.model.IncomeCategory;
-import org.app.service.IncomeService;
+import org.app.dao.IncomeDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,16 +13,19 @@ import java.util.List;
 
 @Controller
 public class IncomeController {
-    IncomeService incomeService;
+    IncomeDao incomeService;
+    HttpSession session;
 
-    public IncomeController(IncomeService incomeService) {
-        this.incomeService = incomeService;
+    public IncomeController(IncomeDao incomeDao, HttpSession session) {
+        this.incomeService = incomeDao;
+        this.session = session;
     }
 
     @PostMapping("/income")
     public String addIncomeRecord(Income income) {
-        incomeService.addIncome(income);
-        return "sucess";
+        String userName = (String) session.getAttribute("user");
+        incomeService.addIncome(income, userName);
+        return "redirect:/dashboard";
     }
 
     @RequestMapping("/income")

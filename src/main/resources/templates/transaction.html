@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <h1>Income</h1>
+        <table border="1">
+            <tr>
+                <th>Income Amount</th>
+                <th>Category</th>
+                <th>Remarks</th>
+            </tr>
+            <tr th:each="incomes: ${income}">
+                <td th:text="${incomes.amount}">Income Amount</td>
+                <td th:text="${incomes.category}">Category</td>
+                <td th:text="${incomes.remarks}">Remarks</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h1>Expenses</h1>
+        <table border="1">
+            <tr>
+                <th>Expenses Amount</th>
+                <th>Category</th>
+                <th>Remarks</th>
+            </tr>
+            <tr th:each="expenses: ${expense}">
+                <td th:text="${expenses.amount}">Expense Amount</td>
+                <td th:text="${expenses.category}">Category</td>
+                <td th:text="${expenses.remarks}">Remarks</td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

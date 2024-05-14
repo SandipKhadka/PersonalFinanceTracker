@@ -29,7 +29,7 @@ public class ExpensesDaoImpl implements ExpensesDao {
             userId = jdbcTemplate.queryForObject(sql, Integer.class, userName);
         }
         sql = "INSERT INTO expenses(expenses_amount,expenses_category,user_id,remarks,date,time) VALUES (?,?,?,?,curdate(),curtime())";
-        jdbcTemplate.update(sql, amount, categoryId,userId, remarks);
+        jdbcTemplate.update(sql, amount, categoryId, userId, remarks);
     }
 
     @Override
@@ -37,5 +37,12 @@ public class ExpensesDaoImpl implements ExpensesDao {
         sql = "SELECT category_id, category_name FROM expenses_category";
         List<ExpensesCategory> expensesCategories = jdbcTemplate.query(sql, new ExpensesCategoryMapping());
         return expensesCategories;
+    }
+
+    @Override
+    public int getExpensesAmount(String userName) {
+        String sql = "SELECT SUM(expenses.expenses_amount ) FROM expenses INNER JOIN user_details ON expenses.user_id = user_details.user_id WHERE user_details.user_name =?";
+        int income = jdbcTemplate.queryForObject(sql, Integer.class, userName);
+        return income;
     }
 }

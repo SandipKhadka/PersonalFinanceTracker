@@ -8,13 +8,9 @@
 </head>
 
 <body>
-
-    <head>
-        <h1>User Dashboard</h1>
-    </head>
     <nav>
         <ul>
-            <li>Catagory</li>
+            <li><a th:href="@{/transaction}">Transaction</a></li>
             <li>Profile</li>
         </ul>
     </nav>
@@ -22,6 +18,15 @@
         <div>
             <h1 th:text="${income}"></h1>
             <h1>Income</h1>
+        </div>
+        <div>
+            <h1 th:text="${expenses}"></h1>
+            <h1>Expenses</h1>
+
+        </div>
+        <div>
+            <h1 th:text="${netIncome}"></h1>
+            <h1>Net Income</h1>
         </div>
         <div>
             <a th:href="@{/expenses}">

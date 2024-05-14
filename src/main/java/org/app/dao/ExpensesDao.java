@@ -10,4 +10,5 @@ public interface ExpensesDao {
 
     List<ExpensesCategory> getAllCategory();
 
+    int getExpensesAmount(String userName);
 }

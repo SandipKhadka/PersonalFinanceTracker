@@ -2,7 +2,7 @@ package org.app.Controller;
 
 import org.app.model.Login;
 import org.app.model.Register;
-import org.app.service.UserService;
+import org.app.dao.UserDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class UserController {
 
-    UserService userService;
+    UserDao userDao;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     @GetMapping
@@ -39,11 +39,11 @@ public class UserController {
     public String registerUser(@ModelAttribute("register") Register user, Model model, HttpSession session) {
         String userName = user.getUserName();
         try {
-            if (!userService.isUserNameAvailable(userName)) {
+            if (!userDao.isUserNameAvailable(userName)) {
                 model.addAttribute("userNameError", "The username is already taken please try another");
                 return "register";
             } else {
-                userService.registerService(user);
+                userDao.registerUser(user);
                 session.setAttribute("user", userName);
                 return "expenses_form";
             }
@@ -58,16 +58,16 @@ public class UserController {
         String userName = user.getUserName();
         long password = user.hashedPassword();
         try {
-            if (userService.isUserNameAvailable(userName)) { // isUserNameAvailable method returns true when username is
-                                                             // not present in database otherwise false
+            if (userDao.isUserNameAvailable(userName)) { // isUserNameAvailable method returns true when username is
+                                                         // not present in database otherwise false
                 model.addAttribute("userNameError", "The username is not available please check properly");
                 return "login";
             }
-            if (!userService.isPasswordCorrect(userName, password)) {
+            if (!userDao.isPasswordCorrect(userName, password)) {
                 model.addAttribute("passwordError", "Incorrect password");
                 return "login";
             }
-            userService.loginService(user);
+            userDao.loginUser(user);
             session.setAttribute("user", userName);
             return "redirect:/dashboard";
         } catch (Exception e) {

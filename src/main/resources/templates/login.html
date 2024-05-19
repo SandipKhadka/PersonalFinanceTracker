@@ -1,51 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-    <link rel="stylesheet" href="src\main\resources\static\login.css" />
-  </head>
-  <body>
-    <form action="login" method="post">
-      <div class="imgcontainer">
-        <!-- Add an image or logo here if needed -->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" th:href="@{/login.css}" />
+</head>
+
+<body>
+  <form action="login" method="post">
+    <div class="imgcontainer">
+      <!-- Add an image or logo here if needed -->
+    </div>
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" id="uname" name="userName" required />
+      <div>
+        <span th:text="${userNameError}" class="error"></span>
       </div>
-      <div class="container">
-        <label for="uname"><b>Username</b></label>
-        <input
-          type="text"
-          placeholder="Enter Username"
-          id="uname"
-          name="userName"
-          required
-        />
-        <div>
-          <span th:text="${userNameError}" class="error"></span>
-        </div>
-        <label for="psw"><b>Password</b></label>
-        <input
-          type="password"
-          placeholder="Enter Password"
-          id="psw"
-          name="password"
-          required
-        />
-        <div>
-          <span th:text="${passwordError}" class="error"></span>
-        </div>
-        <button type="submit">Login</button>
-        <label>
-          <input type="checkbox" checked="checked" name="remember" /> Remember
-          me
-        </label>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" id="psw" name="password" required />
+      <div>
+        <span th:text="${passwordError}" class="error"></span>
       </div>
-      <div class="container footer">
-        <a th:href="@{/register}">
-          <button type="button" class="register">Register Now</button>
-        </a>
-        <span class="psw"><a href="#">Forgot password?</a></span>
-      </div>
-    </form>
-  </body>
+      <button type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember" /> Remember
+        me
+      </label>
+    </div>
+    <div class="container footer">
+      <a th:href="@{/register}">
+        <button type="button" class="register">Register Now</button>
+      </a>
+      <span class="psw"><a href="#">Forgot password?</a></span>
+    </div>
+  </form>
+</body>
+
 </html>

@@ -76,10 +76,11 @@ img.avatar {
 
 .container {
   padding: 16px;
+  padding-bottom: 0px;
 }
 
-span.psw {
-  float: right;
+p.psw {
+  align-items: right;
   padding-top: 16px;
 }
 
@@ -94,11 +95,14 @@ span.psw {
 a {
   text-decoration: none;
   color: #f5a623;
+  padding-left: 16px;
 }
 
 a:hover {
   text-decoration: underline;
 }
+
+
 
 @media screen and (max-width: 300px) {
   span.psw {

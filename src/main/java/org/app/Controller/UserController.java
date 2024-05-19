@@ -20,19 +20,14 @@ public class UserController {
         this.userDao = userDao;
     }
 
-    @GetMapping
-    public String show() {
-        return "home_page";
+    @GetMapping("/")
+    public String showLoginPage() {
+        return "login";
     }
 
     @GetMapping("/register")
     public String showRegisterPage() {
         return "register";
-    }
-
-    @GetMapping("/login")
-    public String showLoginPage() {
-        return "login";
     }
 
     @PostMapping("/register")

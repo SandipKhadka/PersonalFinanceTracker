@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Trend Dashboard</title>
+    <link rel="stylesheet" href="src\main\resources\static\styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Dashboard</h1>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <nav>
-        <ul>
-            <li><a th:href="@{/transaction}">Transaction</a></li>
-            <li>Profile</li>
-        </ul>
-    </nav>
-    <main>
-        <div>
-            <h1 th:text="${income}"></h1>
-            <h1>Income</h1>
+      <div class="summary">
+        <div class="summary-item">
+          <div class="summary-title">Income</div>
+          <div class="summary-value" th:text="${income}">Rs. 1000</div>
         </div>
-        <div>
-            <h1 th:text="${expenses}"></h1>
-            <h1>Expenses</h1>
-
+        <div class="summary-item">
+          <div class="summary-title">Expenses</div>
+          <div class="summary-value" th:text="${expenses}">Rs. 460</div>
         </div>
-        <div>
-            <h1 th:text="${netIncome}"></h1>
-            <h1>Net Income</h1>
+        <div class="summary-item">
+          <div class="summary-title">Net Income</div>
+          <div class="summary-value" th:text="${netIncome}">Rs. 540</div>
         </div>
-        <div>
-            <a th:href="@{/expenses}">
-                <button>Add Expenses</button>
-            </a>
-            <a th:href="@{/income}">
-                <button>Add Income</button>
-            </a>
+      </div>
+      <div class="charts">
+        <div class="chart" id="expenses-by-group">
+          <!-- Placeholder for Pie Chart -->
         </div>
-    </main>
-</body>
-
+        <div class="chart" id="top-expense-categories">
+          <!-- Placeholder for Bar Chart -->
+        </div>
+        <div class="chart" id="expenses-by-week">
+          <!-- Placeholder for Line Chart -->
+        </div>
+        <div class="chart" id="expenses-by-month">
+          <!-- Placeholder for Bar Chart -->
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts.js"></script>
+  </body>
 </html>

@@ -10,6 +10,10 @@
 <body>
     <div>
         <h1>Income</h1>
+        <form th:action="@{/transaction}" method="post">
+            <input type="month" name="filterTransactionDate">
+            <input type="submit" name="submit">
+        </form>
         <table border="1">
             <tr>
                 <th>Income Amount</th>

@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.app.config.DatabaseConnection;
 import org.app.model.Transaction;
+import org.app.model.TransactionFilter;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -17,15 +18,24 @@ public class TransactionDaoImpl implements TransactionDao {
     Connection connection;
     PreparedStatement preparedStatement;
     ResultSet resultSet;
+    String transactionFilterDate;
+    int year, month;
+    String[] date;
 
     @Override
-    public List<Transaction> getIncomeTransaction(String userName) {
-        String sql = "SELECT income_amount,category_name,remarks FROM income INNER JOIN income_category ON income.income_category=income_category.category_id INNER JOIN user_details ON income.user_id = user_details.user_id WHERE user_name =?";
+    public List<Transaction> getIncomeTransaction(String userName, TransactionFilter transactionFilter) {
+        String sql = "SELECT income_amount,category_name,remarks FROM income INNER JOIN income_category ON income.income_category=income_category.category_id INNER JOIN user_details ON income.user_id = user_details.user_id WHERE user_name =? AND YEAR(date) =? AND MONTH(date) =?";
         List<Transaction> incomeTransactions = new ArrayList<Transaction>();
+        transactionFilterDate = transactionFilter.getFilterTransactionDate();
+        date = transactionFilterDate.split("-");
+        year = Integer.parseInt(date[0]);
+        month = Integer.parseInt(date[1]);
         try {
             connection = DatabaseConnection.getConnection();
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, userName);
+            preparedStatement.setInt(2, year);
+            preparedStatement.setInt(3, month);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Transaction transaction = new Transaction();

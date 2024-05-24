@@ -1,30 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <form th:action="@{/register}" method="post">
-        <label for="first-name">First Name:</label>
-        <input type="text" id="first-name" name="firstName" placeholder="Enter your first name" required>
-
-        <label for="last-name">Last Name:</label>
-        <input type="text" id="last-name" name="lastName" placeholder="Enter your last name" required>
-
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="userName" placeholder="Choose a username" required>
-        <div>
-            <span th:text="${userNameError}" class="error"></span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Trend Dashboard</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="menu-container">
+        <div class="hamburger-menu" onclick="toggleMenu()">
+          &#9776;
+          <!-- Hamburger icon -->
         </div>
+        <div id="menu" class="dropdown-menu">
+          <a href="#">Income Page</a>
+          <a href="#">Expense Page</a>
+        </div>
+      </div>
+      <div class="user-container" onclick="toggleUserMenu()">
+        <span class="user-greeting">Hello, <br />User!</span>
+        <div id="user-menu" class="user-menu">
+          <a href="#">Sign Out</a>
+        </div>
+      </div>
+    </header>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter a password" required>
+    <div class="container">
+      <h1>Dashboard</h1>
 
-        <button type="submit">Register</button>
-        <p>Already have an account? <a href="index.html">Login</a></p>
-    </form>    
-</body>
+      <div class="summary">
+        <div class="summary-item">
+          <div class="summary-title">Income</div>
+          <div class="summary-value" th:text="${income}">Rs. 1000</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-title">Expenses</div>
+          <div class="summary-value" th:text="${expenses}">Rs. 460</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-title">Net Income</div>
+          <div class="summary-value" th:text="${netIncome}">Rs. 540</div>
+        </div>
+      </div>
+      <div class="charts">
+        <div class="chart" id="expenses-by-group">
+          <!-- Placeholder for Pie Chart -->
+        </div>
+        <div class="chart" id="top-expense-categories">
+          <!-- Placeholder for Bar Chart -->
+        </div>
+        <div class="chart" id="expenses-by-week">
+          <!-- Placeholder for Line Chart -->
+        </div>
+        <div class="chart" id="expenses-by-month">
+          <!-- Placeholder for Bar Chart -->
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts.js"></script>
+  </body>
 </html>

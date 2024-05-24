@@ -2,7 +2,15 @@ package org.app.model;
 
 public class Transaction {
     int amount;
-    String category, remarks;
+    String category, remarks, filterDate;
+
+    public String getFilterDate() {
+        return filterDate;
+    }
+
+    public void setFilterDate(String filterDate) {
+        this.filterDate = filterDate;
+    }
 
     public int getAmount() {
         return amount;

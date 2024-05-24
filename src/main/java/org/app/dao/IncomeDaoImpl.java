@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,14 +28,17 @@ public class IncomeDaoImpl implements IncomeDao {
         categoryId = income.getCategoryId();
         remarks = income.getRemarks();
         userId = getUserId(userName);
+        LocalTime localTime = LocalTime.now();
+        Time sqlTime = Time.valueOf(localTime);
         try {
             connection = DatabaseConnection.getConnection();
-            sql = "INSERT INTO income(income_amount, income_category, user_id, remarks, date, time) VALUES(?,?,?,?,CURDATE(),CURTIME())";
+            sql = "INSERT INTO income(income_amount, income_category, user_id, remarks, date, time) VALUES(?,?,?,?,CURDATE(),?)";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, amount);
             preparedStatement.setInt(2, categoryId);
             preparedStatement.setInt(3, userId);
             preparedStatement.setString(4, remarks);
+            preparedStatement.setTime(5, sqlTime);
             preparedStatement.executeUpdate();
             connection.close();
             preparedStatement.close();
